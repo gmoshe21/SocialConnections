@@ -1,0 +1,14 @@
+{
+    "Server": {
+        "Host": "127.0.0.1",
+        "Port": "8080"
+    },
+    "Postgres": {
+      "Host": "127.0.0.1",
+      "Port": "5432",
+      "User": "postgres",
+      "Password": "P%2nhVuXVLC@3HeT#E&eqvgVAMd3k8N",
+      "DBName": "mp_dev_v6",
+      "SSLMode": "require"
+    }
+}
