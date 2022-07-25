@@ -1,0 +1,22 @@
+[
+    {
+        "sender": "иванов",
+        "recipient": "петров"
+    },
+    {
+        "sender": "иванов",
+        "recipient": "сидоров"
+    },
+    {
+        "sender": "иванов",
+        "recipient": "васечкин"
+    },
+    {
+        "sender": "васечкин",
+        "recipient": "петров"
+    },
+    {
+        "sender": "васечкин",
+        "recipient": "иванов"
+    }
+]

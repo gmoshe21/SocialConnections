@@ -1,6 +1,9 @@
 package server
 
 import (
+	controlHttp "SocialConnections/internal/control/delivery/http"
+	controlRepository "SocialConnections/internal/control/repository"
+	controlUseCase "SocialConnections/internal/control/usecase"
 	"SocialConnections/config"
 	"context"
 	"fmt"
@@ -24,7 +27,7 @@ func NewServer(cfg *config.Config, database *sqlx.DB) *Server {
 	}
 }
 
-func (s *Server) MapHandlers(ctx context.Context) error {
+func (s *Server) MapHandlers(ctx context.Context) {
 	controlRepo := controlRepository.NewControlRepository(s.pgDB)
 	controlUC := controlUseCase.NewControlUseCase( s.cfg, controlRepo)
 	controlHandlers := controlHttp.NewControlHandlers(s.cfg, controlUC)
@@ -34,10 +37,8 @@ func (s *Server) MapHandlers(ctx context.Context) error {
 
 }
 
-func (s *Server) Run(ctx context.Context) error {
-	if err := s.MapHandlers(ctx); err != nil {
-		log.Fatalf("Cannot map handlers: ", err)
-	}
+func (s *Server) Run(ctx context.Context) {
+	s.MapHandlers(ctx)
 
 	if err := s.fiber.Listen(fmt.Sprintf("%s:%s", s.cfg.Server.Host, s.cfg.Server.Port)); err != nil {
 		log.Fatalf("Error starting Server: ", err)

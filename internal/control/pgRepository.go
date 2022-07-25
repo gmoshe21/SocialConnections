@@ -5,8 +5,7 @@ import (
 	"context"
 )
 
-type UseCase interface {
+type Repository interface {
 	NewCommunication(ctx context.Context, params models.Connections) error
-	FetchConnections(ctx context.Context) (result []byte, err error) 
-
+	FetchConnections(ctx context.Context) (result []byte, err error)
 }
