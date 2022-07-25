@@ -8,5 +8,5 @@ import(
 
 func MapAPIRoutes(group fiber.Router, h control.Handlers) {
 	group.Get("/fetch_graph", h.FetchGraph())
-	group.Post("/new_communication")
+	group.Post("/new_communication", h.NewCommunication())
 }
