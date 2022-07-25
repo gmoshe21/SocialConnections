@@ -2,6 +2,7 @@ package main
 
 import (
 	"SocialConnections/config"
+	"SocialConnections/internal/server"
 	"SocialConnections/pkg/postgres"
 	"context"
 	"log"
@@ -36,5 +37,6 @@ func main() {
 		}
 	}(psqlDB)
 
-	
+	s := server.NewServer(cfg, psqlDB)
+	s.Run(context.Background())
 }
