@@ -37,10 +37,12 @@ func (s *Server) MapHandlers(ctx context.Context) {
 
 }
 
-func (s *Server) Run(ctx context.Context) {
+func (s *Server) Run(ctx context.Context) error {
 	s.MapHandlers(ctx)
 
 	if err := s.fiber.Listen(fmt.Sprintf("%s:%s", s.cfg.Server.Host, s.cfg.Server.Port)); err != nil {
 		log.Fatalf("Error starting Server: ", err)
+		return err
 	}
+	return nil
 }

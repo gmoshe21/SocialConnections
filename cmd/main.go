@@ -25,7 +25,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("PostgreSQL init error: %s", err)
 	} else {
-		log.Println("PostgreSQL connected, status: %#v", psqlDB.Stats())
+		log.Println("PostgreSQL connected")
 	}
 
 	defer func(psqlDB *sqlx.DB) {
@@ -38,5 +38,10 @@ func main() {
 	}(psqlDB)
 
 	s := server.NewServer(cfg, psqlDB)
-	s.Run(context.Background())
+	err = s.Run(context.Background())
+	if err != nil {
+		log.Fatalf("Cannot start server: %v", err)
+	}
+
+	
 }
